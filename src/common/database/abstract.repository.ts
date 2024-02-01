@@ -1,8 +1,10 @@
 import { Logger, NotFoundException } from '@nestjs/common';
 import { FilterQuery, Model, Types, UpdateQuery } from 'mongoose';
 import { AbstractDocument } from './abstract.schema';
-// абстрактный класс предоставляет базовые операции для создания документов с использованием Mongoose,
-// ожидается, что он будет использоваться как базовый класс для репозиториев в NestJS-приложении.
+// абстрактный класс предоставляет базовые операции для создания документов
+// с использованием Mongoose,
+// ожидается, что он будет использоваться как базовый класс для репозиториев
+// в NestJS-приложении.
 export abstract class AbstractRepository<TDocument extends AbstractDocument> {
   protected abstract readonly logger: Logger;
 
@@ -18,8 +20,10 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
   }
 
   async findOne(filterQuery: FilterQuery<TDocument>): Promise<TDocument> {
-    // при использовании lean(), возвращаемые объекты будут чистыми JavaScript-объектами без дополнительных методов и внутренней сложной структуры данных.
-    // lean<TDocument>() указывает Mongoose, что результат должен быть преобразован к типу TDocument после запроса.
+    // при использовании lean(), возвращаемые объекты будут чистыми JavaScript-объектами
+    // без дополнительных методов и внутренней сложной структуры данных.
+    // lean<TDocument>() указывает Mongoose, что результат должен быть преобразован
+    //  к типу TDocument после запроса.
     const document = await this.model.findOne(filterQuery).lean<TDocument>();
 
     if (!document) {
@@ -33,7 +37,8 @@ export abstract class AbstractRepository<TDocument extends AbstractDocument> {
     filterQuery: FilterQuery<TDocument>,
     update: UpdateQuery<TDocument>,
   ): Promise<TDocument> {
-    // Опция { new: true } указывает Mongoose вернуть обновленный документ после выполнения операции.
+    // Опция { new: true } указывает Mongoose вернуть обновленный документ
+    // после выполнения операции.
     const document = await this.model
       .findOneAndUpdate(filterQuery, update, {
         new: true,

@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ModelDefinition, MongooseModule } from '@nestjs/mongoose';
+import { DbMigrationService } from './db-migration.service';
 // создаем модуль базы данных для NestJS, используя Mongoose для подключения к MongoDB.
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { ModelDefinition, MongooseModule } from '@nestjs/mongoose';
       inject: [ConfigService],
     }),
   ],
+  providers: [DbMigrationService],
 })
 export class DatabaseModule {
   // forFeature - Это статический метод внутри класса DatabaseModule.

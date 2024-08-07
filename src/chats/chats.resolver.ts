@@ -3,7 +3,7 @@ import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GqlAuthGuard } from 'src/auth/guards/gql-auth.guard';
 import { ChatsService } from './chats.service';
 import { CreateChatInput } from './dto/create-chat.input';
-import { UpdateChatInput } from './dto/update-chat.input';
+// import { UpdateChatInput } from './dto/update-chat.input';
 import { Chat } from './entities/chat.entity';
 import { CurrentUser } from 'src/auth/current-user.decorator';
 import { TokenPayload } from 'src/auth/token-payload.interface';
@@ -30,10 +30,10 @@ export class ChatsResolver {
     return this.chatsService.findOne(id);
   }
 
-  @Mutation(() => Chat)
-  updateChat(@Args('updateChatInput') updateChatInput: UpdateChatInput) {
-    return this.chatsService.update(updateChatInput.id, updateChatInput);
-  }
+  // @Mutation(() => Chat)
+  // updateChat(@Args('updateChatInput') updateChatInput: UpdateChatInput) {
+  //   return this.chatsService.update(updateChatInput.id, updateChatInput);
+  // }
 
   @Mutation(() => Chat)
   removeChat(@Args('id', { type: () => Int }) id: number) {

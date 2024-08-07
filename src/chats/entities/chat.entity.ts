@@ -15,7 +15,7 @@ export class Chat extends AbstractEntity {
 
   @Field()
   @Prop()
-  isPravite: boolean;
+  isPrivate: boolean;
 
   @Field({ nullable: true })
   @Prop()
